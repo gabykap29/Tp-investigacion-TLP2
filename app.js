@@ -13,12 +13,14 @@ app.use(express.static('public'));
 
 //midlewares
 app.use(express.urlencoded({extended:true}));
-app.use(express.json);
-app.use(cors());
+app.use(express.json());
+// app.use(cors());
 //variables de entorno
-dotenv.config({path:'./env/env'})
+dotenv.config({path:'./env/.env'})
 
-const port = process.env.PORT || 3000;
+app.use(require('./routes/router'));
+
+const port = process.env.PORT;
 const host = 'localhost';
 
 app.listen(port,host,() =>{
