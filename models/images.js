@@ -28,7 +28,7 @@ const Images = sequelize.define('Images',{
     createdAt:true,
     updatedAt:true,
     deletedAt:true,
-    tableName:'reservas'
+    tableName:'images'
 });
 Images.sync();
 

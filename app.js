@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const fileUpload = require('express-fileupload');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
@@ -11,15 +12,17 @@ require('ejs');
 app.set('view engine',"ejs");
 
 app.use(express.static('public'));
+app.use(fileUpload())
 
 //midlewares
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 //variables de entorno
-dotenv.config({path:'./env/.env'})
+dotenv.config({path:'.env'})
 
 app.use(require('./routes/router'));
+
 
 sequelize.authenticate()
     .then(()=> console.log('Conexión a la base de datos exitosa'))
