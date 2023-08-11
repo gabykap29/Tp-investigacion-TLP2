@@ -5,6 +5,7 @@
 .header{
     display: flex;
     color: white;
+    padding-bottom: 10px;
     margin-bottom: 5px;
 }
 .header h3{
@@ -12,4 +13,11 @@
 }
 #completo{
     width: 20%;
+}
+footer{
+    padding-bottom: 40px;
+    color: aliceblue;
+}
+footer span {
+    padding-left: 40%;
 }

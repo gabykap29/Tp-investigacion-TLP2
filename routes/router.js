@@ -9,6 +9,9 @@ router.use('/imagenes', express.static(path.join(__dirname, '..', 'public', 'ima
 router.get('/index', (req, res) => {
     res.render('index');
 });
+router.get('/subir',(req,res)=>{
+    res.render('subir')
+})
 
 router.post('/api/cargar', create);
 router.get('/api/obtener', reads);

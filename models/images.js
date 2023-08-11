@@ -5,10 +5,19 @@ const Images = sequelize.define('Images',{
         primaryKey:true,
         autoIncrement:true,
     },
+    titulo:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
     rutaImagen:{
         type:DataTypes.STRING,
         allowNull:false,
     },
+    descripcion:{
+        type:DataTypes.STRING,
+        allowNull:true
+    }
+    ,
     createdAt:{
         type: DataTypes.DATE,
         allowNull:false,

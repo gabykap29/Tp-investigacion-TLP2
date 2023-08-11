@@ -4,6 +4,8 @@ const path = require('path')
 const cloudinary = require('../utils/cloudinary');
 
 ctrlImages.create = async (req,res)=>{
+    const{titulo,observaciones}= req.body;
+    console.log(req.body)
     try{
         // if (!req.files || Object.keys(req.files).length === 0) {
         //     return res.status(400).send('No files were uploaded.');
@@ -18,9 +20,11 @@ ctrlImages.create = async (req,res)=>{
         })
         let rutaImagen = result.url
         const imagen = await Images.create({
+          titulo,
           rutaImagen: rutaImagen,
+          observaciones,
         })
-  
+        console.log(imagen)
         imagenFile.mv(result, function(err){
           if(err){
               return res.status(500).json(err);

@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         let imageURL = imagen.rutaImagen;
         galeria.innerHTML += `
         <div class="carousel-item">
-          <img src="${imageURL}" class="d-block w-100" id="img" alt="...">
+          <img src="${imageURL}" class="d-block w-100 h-100" id="img" alt="...">
+          
         </div>
         `;
     });
