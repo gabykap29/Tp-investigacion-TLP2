@@ -1,6 +1,7 @@
 const ctrlImages = {};
 const Images = require('../models/images');
 const path = require('path')
+const cloudinary = require('../utils/cloudinary');
 
 ctrlImages.create = async (req,res)=>{
     try{
@@ -8,15 +9,19 @@ ctrlImages.create = async (req,res)=>{
         //     return res.status(400).send('No files were uploaded.');
         //   }
           let imagenFile;
-          let uploadPath;
 
         imagenFile = req.files.imagen;
-        uploadPath = path.join(__dirname,'../public/imagenes/',imagenFile.name);
+        let result = await cloudinary.uploader.upload(imagenFile.tempFilePath,{
+            public_id: `${Date.now()}`,
+            resource_type:'auto',
+            folder:'images'
+        })
+        let rutaImagen = result.url
         const imagen = await Images.create({
-          rutaImagen: uploadPath,
+          rutaImagen: rutaImagen,
         })
   
-        imagenFile.mv(uploadPath, function(err){
+        imagenFile.mv(result, function(err){
           if(err){
               return res.status(500).json(err);
           }

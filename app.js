@@ -12,7 +12,10 @@ require('ejs');
 app.set('view engine',"ejs");
 
 app.use(express.static('public'));
-app.use(fileUpload())
+app.use(fileUpload({
+    useTempFiles:true,
+    limits:{fileSize: 50 * 2024 * 1024}
+}));
 
 //midlewares
 app.use(express.urlencoded({extended:true}));
