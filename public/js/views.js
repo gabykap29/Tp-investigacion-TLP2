@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <td>${imagen.createdAt}</td>
             <td>
               <a onclick="eliminarImagen(event)" class="btn btn-danger btn-sm" data-id="${imagen.id}">Eliminar</a>
-              <a href="http://localhost:3000/reservas/editar/${imagen.id}" class="btn btn-success btn-sm">Editar</a>
+              <a href="/editar/${imagen.id}" class="btn btn-success btn-sm">Editar</a>
             </td>
           </tr>
         `;

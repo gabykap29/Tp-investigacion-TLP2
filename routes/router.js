@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, reads,Delete } = require('../controllers/images.controller');
+const { create, reads,Delete, update } = require('../controllers/images.controller');
 const path = require('path');
 const router = express.Router();
 
@@ -15,9 +15,12 @@ router.get('/subir',(req,res)=>{
 router.get('/imagenes',(req,res)=>{
     res.render('views')
 })
-
+router.get('/editar/:id',(req,res)=>{
+    res.render('edit',{id: req.params.id})
+})
 router.post('/api/cargar', create);
 router.get('/api/obtener', reads);
-router.delete('/api/eliminar/:id',Delete)
+router.put('/api/editar/:id',update);
+router.delete('/api/eliminar/:id',Delete);
 
 module.exports = router;

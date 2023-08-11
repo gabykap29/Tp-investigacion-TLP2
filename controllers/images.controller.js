@@ -57,6 +57,43 @@ ctrlImages.reads = async (req,res)=>{
         })
     }
 }
+ctrlImages.update = async (req,res)=>{
+    const {id}=req.params.id;
+    const{titulo,descripcion}= req.body;
+    console.log(req.body)
+    try{
+          let imagenFile;
+
+        imagenFile = req.files.imagen;
+        let result = await cloudinary.uploader.upload(imagenFile.tempFilePath,{
+            public_id: `${Date.now()}`,
+            resource_type:'auto',
+            folder:'images'
+        })
+        let rutaImagen = result.url
+        const imagen = await Images.update({
+          titulo,
+          rutaImagen: rutaImagen,
+          descripcion,
+        },{
+            where:{
+                id:req.params.id
+            }
+        });
+        console.log(imagen)
+        imagenFile.mv(result, function(err){
+          if(err){
+              return res.status(500).json(err);
+          }
+          res.render(index)
+        })
+    }catch(err){
+        console.log(err)
+        res.status(500).json(err)
+    }
+
+
+}
 
 ctrlImages.Delete = async (req,res)=>{
     const {id}= req.params
