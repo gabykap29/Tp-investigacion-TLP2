@@ -20,6 +20,11 @@ formImagen.addEventListener('submit',async (e)=>{
         if(response.status!== 201 && response.status !== 200){
             console.log('error al subir la imagen')
         }
+        swal({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+          });
         setTimeout(() => {
             window.location.href = '/index';
           }, 2000);

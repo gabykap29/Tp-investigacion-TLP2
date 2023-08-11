@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         galeria.innerHTML += `
         <div class="carousel-item">
           <img src="${imageURL}" class="d-block w-100 h-100" id="img" alt="...">
-          
         </div>
         `;
     });

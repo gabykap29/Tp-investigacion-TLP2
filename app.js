@@ -35,5 +35,5 @@ const port = process.env.PORT;
 const host = 'localhost';
 
 app.listen(port,host,() =>{
-    console.log(`Servidor corriento en http://${host}:${port}/` );
+    console.log(`Servidor corriento en http://${host}:${port}/index` );
 })

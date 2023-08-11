@@ -1,6 +1,6 @@
 #img{
     width: 100%;
-    max-height: 100%;
+    max-height: 65%;
 }
 .header{
     display: flex;
@@ -11,13 +11,13 @@
 .header h3{
     padding-left:35%;
 }
-#completo{
-    width: 20%;
-}
 footer{
-    padding-bottom: 40px;
+    padding-bottom: 70px;
     color: aliceblue;
 }
 footer span {
     padding-left: 40%;
+}
+.img{
+    width: 50px;
 }

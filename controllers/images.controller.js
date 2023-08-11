@@ -3,8 +3,9 @@ const Images = require('../models/images');
 const path = require('path')
 const cloudinary = require('../utils/cloudinary');
 
+
 ctrlImages.create = async (req,res)=>{
-    const{titulo,observaciones}= req.body;
+    const{titulo,descripcion}= req.body;
     console.log(req.body)
     try{
         // if (!req.files || Object.keys(req.files).length === 0) {
@@ -22,14 +23,14 @@ ctrlImages.create = async (req,res)=>{
         const imagen = await Images.create({
           titulo,
           rutaImagen: rutaImagen,
-          observaciones,
+          descripcion,
         })
         console.log(imagen)
         imagenFile.mv(result, function(err){
           if(err){
               return res.status(500).json(err);
           }
-          res.json(imagen)
+          res.render(index)
         })
     }catch(err){
         console.log(err)
@@ -53,6 +54,27 @@ ctrlImages.reads = async (req,res)=>{
     } catch (error) {
         return res.status(error.message || 500).json({
             message:''
+        })
+    }
+}
+
+ctrlImages.Delete = async (req,res)=>{
+    const {id}= req.params
+    try {
+        const imagenEliminada = await Images.destroy({
+            where:{id}
+        });
+        if(!imagenEliminada){
+            throw({
+                status:500,
+                message: 'error interno del servidor!'
+            })
+        }
+        let mensaje = 'Eliminado con exito'
+        return res.json(mensaje);
+    } catch (error) {
+        return res.status(error.status || 500).json({
+            message: error.message || 'error interno del servidor'
         })
     }
 }
